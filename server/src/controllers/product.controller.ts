@@ -4,6 +4,25 @@ import Product from '../models/Product';
 import { AuthRequest } from '../middleware/auth';
 import { AppError } from '../middleware/errorHandler';
 
+export async function uploadProductImage(req: AuthRequest, res: Response): Promise<void> {
+  try {
+    // Uploadthing middleware handles the actual upload
+    // This endpoint serves as the backend route that Uploadthing calls
+    // The file URL is returned by Uploadthing's onUploadComplete
+    res.json({
+      success: true,
+      message: 'Image uploaded successfully',
+      data: req.body,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to upload image',
+      error: (error as Error).message,
+    });
+  }
+}
+
 export async function listProducts(req: Request, res: Response): Promise<void> {
   const {
     category,

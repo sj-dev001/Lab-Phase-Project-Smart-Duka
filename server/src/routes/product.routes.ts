@@ -5,6 +5,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  uploadProductImage,
 } from '../controllers/product.controller';
 import { authenticate } from '../middleware/auth';
 import { authorize } from '../middleware/rbac';
@@ -15,6 +16,7 @@ const router = Router();
 router.get('/', listProducts);
 router.get('/:id', getProduct);
 router.post('/', authenticate, authorize('vendor', 'admin'), createProductValidator, createProduct);
+router.post('/upload', authenticate, authorize('vendor', 'admin'), uploadProductImage);
 router.put('/:id', authenticate, authorize('vendor', 'admin'), updateProductValidator, updateProduct);
 router.delete('/:id', authenticate, authorize('vendor', 'admin'), deleteProduct);
 

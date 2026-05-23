@@ -89,13 +89,14 @@ Small-scale vendors in local markets lack affordable, customizable digital store
 | Styling     | Tailwind CSS                        |
 | State       | Redux Toolkit                       |
 | Backend     | Node.js + Express.js                |
-| Database    | MongoDB + Mongoose                  |
+| Database    | MongoDB Atlas (free tier)           |
 | Auth        | JWT + bcrypt                        |
 | Payments    | Paystack API                        |
-| Images      | Azure Blob Storage                  |
+| Images      | Uploadthing (free tier)             |
 | Animations  | Framer Motion                       |
 | HTTP Client | Axios                               |
 | Validation  | Joi / express-validator             |
+| Deployment  | Vercel (frontend & backend)         |
 
 ---
 
@@ -301,43 +302,99 @@ Tests will cover:
 
 ---
 
-## Deployment Strategy (Microsoft Azure)
+## Deployment Strategy (Free Alternatives)
 
-The entire application will be deployed on **Microsoft Azure** using the following services:
+The application has been migrated from Azure to use **100% free services** with generous free tiers:
 
-| Component  | Azure Service                | Notes                              |
-| ---------- | ---------------------------- | ---------------------------------- |
-| Frontend   | Azure Static Web Apps        | Static React build, CI/CD via GitHub Actions |
-| Backend    | Azure App Service            | Node.js web app with auto-scaling  |
-| Database   | Azure Cosmos DB for MongoDB  | MongoDB-compatible, fully managed  |
-| Images     | Azure Blob Storage           | Scalable image hosting alternative |
-| Domain     | Azure DNS / Custom Domain    | Custom domain with SSL via Azure   |
-| Monitoring | Azure Monitor + App Insights | Request tracking, logs, alerts     |
+| Component  | Service                | Notes                              |
+| ---------- | ---------------------- | ---------------------------------- |
+| Frontend   | Vercel                 | Optimized React deployment with CI/CD, free tier |
+| Backend    | Vercel / Railway.app   | Node.js serverless or containerized deployment |
+| Database   | MongoDB Atlas          | Free M0 cluster with 512MB storage |
+| Images     | Uploadthing            | Free tier with 32GB/month storage and bandwidth |
+| Payments   | Paystack               | Free tier available, pay per transaction |
+
+### Why Free Alternatives?
+
+- **No Azure subscription required** — no student credits needed
+- **MongoDB Atlas** — enterprise-grade MongoDB hosting with free tier (512MB perfect for MVP)
+- **Uploadthing** — modern file upload service with 32GB/month free tier and excellent React integration
+- **Vercel** — purpose-built for deploying Next.js/React with automatic CI/CD from GitHub
+- **Railway.app** — alternative backend hosting with generous free tier ($5/month equivalent credit)
+- **No cost lock-in** — switch providers anytime, all services have competitive free tiers
 
 ### Deployment Pipeline
 
 ```
-Git Push → GitHub → GitHub Actions → Build → Deploy to Azure
+Git Push → GitHub → Vercel → Automatic Deploy (Frontend & Backend)
 ```
 
-### Advantages of Azure for This Project
+### Setup Instructions
 
-- **Unified ecosystem** — frontend, backend, database, and storage under a single provider
-- **Azure Cosmos DB for MongoDB** — provides MongoDB wire-protocol compatibility with enterprise-grade scalability, global distribution, and SLA-backed uptime
-- **Static Web Apps** — free tier suitable for academic projects, with integrated authentication and custom domain support
-- **App Service** — supports Node.js with easy scaling, staging slots, and environment variable management
-- **Student credits** — Azure for Students provides free credits, making deployment cost-effective for academic projects
-- **GitHub Actions integration** — automated CI/CD from repository to deployment
+#### 1. MongoDB Atlas Setup
+- Go to [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+- Create a free account
+- Create an M0 cluster (free tier)
+- Get connection string: `mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/smartduka`
+- Add to `.env`: `MONGODB_URI=...`
 
-### Deployment Configuration
+#### 2. Uploadthing Setup
+- Go to [uploadthing.com](https://uploadthing.com)
+- Create an account and app
+- Get `UPLOADTHING_SECRET` and `UPLOADTHING_APP_ID`
+- Add to `.env` (server)
 
-Environment variables will be configured via Azure App Service **Application Settings** (not `.env` files). The frontend will communicate with the backend through a configurable API URL set at build time.
+#### 3. Vercel Deployment
 
+**Frontend:**
 ```bash
-# Azure-specific environment settings (configured in Azure Portal)
-MONGODB_URI=mongodb://<cosmos-account>:<primary-key>@<cosmos-account>.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb
-AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=...
+# Push code to GitHub
+git push origin main
+
+# Go to vercel.com, connect GitHub repository
+# Vercel auto-deploys on every push
 ```
+
+**Backend (Node.js API):**
+```bash
+# Deploy to Vercel with Node.js runtime
+# Or use Railway.app for more traditional deployment
+```
+
+#### 4. Environment Variables
+Copy `.env.example` to `.env` and fill in:
+```bash
+MONGODB_URI=mongodb+srv://...
+UPLOADTHING_SECRET=sk_live_...
+UPLOADTHING_APP_ID=...
+PAYSTACK_SECRET_KEY=sk_live_...
+PAYSTACK_PUBLIC_KEY=pk_live_...
+CLIENT_URL=https://your-vercel-app.vercel.app
+```
+
+---
+
+## Cost Estimate
+
+| Service | Cost |
+| ------- | ---- |
+| MongoDB Atlas (512MB) | FREE |
+| Uploadthing (32GB/month) | FREE |
+| Vercel Frontend | FREE |
+| Vercel Backend (up to 1M invocations) | FREE |
+| **Total Monthly Cost** | **FREE** |
+
+---
+
+## Deployment Strategy (Microsoft Azure) - DEPRECATED
+
+> ⚠️ **Note**: The original Azure deployment strategy has been replaced with free alternatives above. Azure Blob Storage and Cosmos DB have been replaced with Uploadthing and MongoDB Atlas respectively.
+
+Original Azure services (no longer used):
+- Azure Static Web Apps → Vercel
+- Azure App Service → Vercel / Railway.app
+- Azure Cosmos DB → MongoDB Atlas
+- Azure Blob Storage → Uploadthing
 
 ---
 

@@ -11,7 +11,7 @@ export const env = {
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
   PAYSTACK_SECRET_KEY: process.env.PAYSTACK_SECRET_KEY || '',
   PAYSTACK_PUBLIC_KEY: process.env.PAYSTACK_PUBLIC_KEY || '',
-  AZURE_STORAGE_CONNECTION_STRING: process.env.AZURE_STORAGE_CONNECTION_STRING || '',
-  AZURE_STORAGE_CONTAINER_NAME: process.env.AZURE_STORAGE_CONTAINER_NAME || 'product-images',
+  UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET || '',
+  UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID || '',
   CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
 };

@@ -16,7 +16,9 @@
     "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.7",
     "framer-motion": "^11.0.3",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "uploadthing": "^6.7.0",
+    "@uploadthing/react": "^6.7.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.1",
