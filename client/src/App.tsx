@@ -15,7 +15,7 @@ import PaymentVerify from './pages/PaymentVerify';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-emerald-50 via-slate-50 to-orange-50/50">
       <Navbar />
       <main className="flex-1">
         <Routes>
