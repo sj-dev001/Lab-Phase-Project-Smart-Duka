@@ -22,10 +22,12 @@
 - Connect GitHub repo
 - Deploy (auto-deploys on git push)
 
-### 4. Deploy Backend - Railway.app
-- Go to: https://railway.app
-- Connect GitHub repo
-- Deploy (auto-deploys on git push)
+### 4. Deploy Backend - Vercel
+- Go to: https://vercel.com
+- Create a second project from the same GitHub repo
+- Set Root Directory to `server`
+- Add backend environment variables
+- Test `/api/health` after deploy
 
 ## Services & Links
 

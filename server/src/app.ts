@@ -41,11 +41,20 @@ app.get('/api/health', (_req, res) => {
 
 app.use(errorHandler);
 
+export default app;
+
 async function start() {
-  await connectDB();
-  app.listen(env.PORT, () => {
-    console.log(`Server running on port ${env.PORT}`);
-  });
+  try {
+    await connectDB();
+    app.listen(env.PORT, () => {
+      console.log(`Server running on port ${env.PORT}`);
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
 }
 
-start();
+if (require.main === module) {
+  start();
+}

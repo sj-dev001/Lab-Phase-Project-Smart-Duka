@@ -97,11 +97,29 @@ mongodb+srv://smartduka_user:MyStrongPassword123@cluster0.abcdef.mongodb.net/sma
 
 #### Option B: Deploy Backend on Vercel (Node.js)
 
-**For API Routes (Serverless Functions):**
+The backend is already prepared for Vercel serverless deployment:
 
-1. Create `api/` folder in root directory
-2. Vercel will automatically turn files in `api/` into serverless functions
-3. Deploy the same way as frontend
+1. Create a second Vercel project for the API
+2. Select the same GitHub repository
+3. Set **Root Directory** to `server`
+4. Keep the default install command
+5. Add backend environment variables:
+   ```
+   MONGODB_URI=...
+   JWT_SECRET=...
+   JWT_EXPIRES_IN=7d
+   PAYSTACK_SECRET_KEY=...
+   PAYSTACK_PUBLIC_KEY=...
+   UPLOADTHING_SECRET=...
+   UPLOADTHING_APP_ID=...
+   CLIENT_URL=https://your-frontend.vercel.app
+   ```
+6. Deploy
+
+The API will be available at:
+```
+https://your-api-project.vercel.app/api/health
+```
 
 **Alternative: Use Railway.app for Traditional Deployment**
 

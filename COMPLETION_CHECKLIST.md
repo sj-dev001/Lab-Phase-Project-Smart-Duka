@@ -145,7 +145,17 @@ This checklist will guide you through the final setup steps to get your app live
 
 ## Phase 6: Deploy Backend 🔌
 
-### Option A: Railway.app (Recommended for Node.js)
+### Option A: Vercel API Routes
+
+- [x] Create serverless API entrypoint at `server/api/index.ts`
+- [x] Add Vercel routing config at `server/vercel.json`
+- [ ] Create a Vercel project from the same GitHub repository
+- [ ] Set root directory to `server`
+- [ ] Add backend environment variables in Vercel
+- [ ] Click **Deploy**
+- [ ] Test `https://your-api-project.vercel.app/api/health`
+
+### Option B: Railway.app (Alternative for Traditional Node Hosting)
 
 - [ ] Go to https://railway.app
   - [ ] Sign in with GitHub
@@ -163,19 +173,13 @@ This checklist will guide you through the final setup steps to get your app live
   - [ ] After deployment, get the domain (e.g., `https://your-api.railway.app`)
   - [ ] Test health endpoint: `https://your-api.railway.app/api/health`
 
-### Option B: Vercel API Routes (Alternative)
-
-- [ ] Create `api/` folder in root
-- [ ] Move Express app to serverless functions
-- [ ] Deploy same way as frontend
-
 ---
 
 ## Phase 7: Update Configurations 🔄
 
 - [ ] **Update Vercel environment variables**
   - [ ] Go to Vercel project settings
-  - [ ] Add `VITE_API_URL=https://your-api-domain.railway.app/api`
+  - [ ] Add `VITE_API_URL=https://your-api-project.vercel.app/api`
   - [ ] Redeploy frontend
 
 - [ ] **Verify CORS is configured**

@@ -357,8 +357,10 @@ git push origin main
 
 **Backend (Node.js API):**
 ```bash
-# Deploy to Vercel with Node.js runtime
-# Or use Railway.app for more traditional deployment
+# Create a second Vercel project
+# Set Root Directory to: server
+# Add backend environment variables
+# Test: https://your-api-project.vercel.app/api/health
 ```
 
 #### 4. Environment Variables
