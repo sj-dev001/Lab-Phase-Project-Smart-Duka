@@ -3,9 +3,6 @@ import { connectDB } from '../config/db';
 import fs from 'fs-extra';
 import path from 'path';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 async function main() {
   console.log('[seed] connecting to db...');
