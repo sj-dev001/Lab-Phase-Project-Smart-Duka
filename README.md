@@ -134,8 +134,8 @@ Smart Duka follows a **client-server architecture** with a clear separation betw
 │                                                 │
 │  External Services:                             │
 │  ┌────────────┐ ┌──────────────────┐             │
-│  │  Paystack  │ │  Azure Blob      │             │
-│  │  Payments  │ │  Storage (Images)│             │
+│  │  Paystack  │ │  Uploadthing     │             │
+│  │  Payments  │ │  Image Storage   │             │
 │  └────────────┘ └──────────────────┘             │
 └─────────────────────────────────────────────────┘
 ```
@@ -143,7 +143,7 @@ Smart Duka follows a **client-server architecture** with a clear separation betw
 ### Key Design Decisions
 
 - **Redux Toolkit** over Context API for predictable state management across auth, cart, and dashboard state
-- **Azure Blob Storage** for product image uploads and delivery
+- **Uploadthing** for product image uploads and delivery
 - **JWT with refresh tokens** for secure, stateless authentication
 - **Mongoose references** for collection relationships (not embedded docs for scalability)
 
@@ -169,7 +169,7 @@ Smart Duka follows a **client-server architecture** with a clear separation betw
 │  products ─┬─── vendor (ref → users)                            │
 │            ├─── category (ref → categories)                     │
 │            ├─── reviews (ref → reviews)                         │
-│            └─── images (Azure Blob Storage URLs)                │
+│            └─── images (Uploadthing Image URLs)                  │
 │                                                                  │
 │  categories ──── name, slug, description, image                  │
 │                                                                  │
@@ -499,7 +499,7 @@ smart-duka/
 - Node.js >= 18
 - MongoDB (local or Atlas URI)
 - Paystack test API keys
-- Azure subscription (or Azure for Students account)
+- Uploadthing account (free tier)
 
 ### Clone & Install
 
@@ -640,12 +640,12 @@ CLIENT_URL=http://localhost:5173
 | Day | Tasks                                                              |
 | --- | ------------------------------------------------------------------ |
 | 1   | Project setup, backend models, authentication system               |
-| 2   | Product CRUD, categories, Azure Blob Storage integration           |
+| 2   | Product CRUD, categories, Uploadthing integration                  |
 | 3   | Cart & checkout flow, Paystack payment integration                 |
 | 4   | Order management, vendor dashboard                                 |
 | 5   | Admin dashboard, reviews, wishlist                                 |
 | 6   | Frontend polish, responsive design, edge case handling             |
-| 7   | Testing, bug fixes, Azure deployment, documentation finalization   |
+| 7   | Testing, bug fixes, Vercel deployment, documentation finalization  |
 
 ---
 
