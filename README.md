@@ -535,9 +535,31 @@ npm run dev
 
 ### Seed Database (Optional)
 
+You can seed the database in two ways:
+
+#### Option A: Basic Seed (Mock Data & Placeholders)
+From the root directory or server directory, run:
 ```bash
 npm run seed
 ```
+This runs the basic server seed script using local mock data and placeholder images.
+
+#### Option B: Advanced Seed (Real Product Images & Categories)
+This pipeline fetches real products from DummyJSON, Platzi, and FakeStore APIs, maps them to local categories and vendors, and seeds them into your database.
+
+1. Install dependencies for the seed tool:
+   ```bash
+   cd seed && npm install
+   ```
+2. Generate product JSON from APIs:
+   ```bash
+   npm run generate:products
+   ```
+3. Run the database seed script:
+   ```bash
+   npm run seed
+   ```
+   *(Note: The seed script staggers insertion timestamps so that high-quality api-sourced products appear first under default query sorting)*
 
 ---
 
@@ -561,9 +583,9 @@ JWT_EXPIRES_IN=7d
 PAYSTACK_SECRET_KEY=sk_test_xxxxxxxxxxxx
 PAYSTACK_PUBLIC_KEY=pk_test_xxxxxxxxxxxx
 
-# Azure Blob Storage
-AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=...
-AZURE_STORAGE_CONTAINER_NAME=product-images
+# File Upload - Uploadthing (free tier)
+UPLOADTHING_SECRET=sk_live_xxxxxxxxxxxx
+UPLOADTHING_APP_ID=xxxxxxxxxxxxxxxx
 
 # Frontend URL (for CORS)
 CLIENT_URL=http://localhost:5173
