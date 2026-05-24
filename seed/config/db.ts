@@ -2,7 +2,9 @@
 import mongoose from 'mongoose';
 import { config } from 'dotenv';
 
-config({ path: '../../.env' });
+import path from 'path';
+
+config({ path: path.resolve(__dirname, '../../.env') });
 
 export async function connectDB(): Promise<typeof mongoose> {
   const uri = process.env.MONGODB_URI;

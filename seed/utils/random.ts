@@ -12,7 +12,7 @@ export function pick<T>(arr: T[]): T {
 
 export function generateSKU(name: string): string {
   const base = slugify(name).slice(0, 8).toUpperCase();
-  return `${base}-${faker.string.alphaNumeric(6).toUpperCase()}`;
+  return `${base}-${faker.string.alphanumeric(6).toUpperCase()}`;
 }
 
 export function generateTags(name: string): string[] {

@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 
 async function main() {
   console.log('[seed] connecting to db...');
+  const { connectDB } = require('../../server/src/config/db');
   await connectDB();
   console.log('[seed] connected');
 
@@ -49,7 +50,7 @@ async function main() {
   const products = await fs.readJson(productsFile);
 
   console.log(`[seed] inserting ${products.length} products`);
-  const insertOps = products.map(async (p: any) => {
+  const insertOps = products.map(async (p: any, idx: number) => {
     const vendor = vendorDocs[p.vendorEmail];
     const category = categoryDocs[p.categorySlug];
     if (!vendor || !category) return null;
@@ -64,6 +65,7 @@ async function main() {
       rating: p.rating,
       numReviews: p.numReviews,
       isActive: p.isActive,
+      createdAt: new Date(Date.now() - idx * 60000),
     };
     return Product.create(prod);
   });
@@ -71,7 +73,8 @@ async function main() {
   await Promise.all(insertOps);
 
   console.log('[seed] done');
-  await mongoose.disconnect();
+  const serverMongoose = require('../../server/node_modules/mongoose');
+  await serverMongoose.disconnect();
   process.exit(0);
 }
 
