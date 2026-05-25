@@ -102,9 +102,26 @@ This checklist will guide you through the final setup steps to get your app live
 ## Phase 4: Seed Database (Optional) 🌱
 
 - [ ] **Run seed script** (optional, to add test data)
+  
+  **Option A: Basic Seeding (Placeholders)**
+  From the root directory or server directory:
   ```bash
   npm run seed
   ```
+  
+  **Option B: Advanced Seeding (Real Images & Categories)**
+  This fetches and builds a 250-product list with high-quality category mappings and images from DummyJSON, Platzi, and FakeStore APIs.
+  ```bash
+  # Go to seed directory and install dependencies
+  cd seed && npm install
+  
+  # Fetch from APIs and build product array
+  npm run generate:products
+  
+  # Connect to database and seed products with staggered timestamps
+  npm run seed
+  ```
+  
   - [ ] Check MongoDB Atlas for test data
   - [ ] Verify products, users, categories exist
 

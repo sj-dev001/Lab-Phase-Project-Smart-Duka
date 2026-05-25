@@ -2,8 +2,8 @@ Deployment notes — Smart Duka
 
 Hosted apps
 
-- Backend: https://smart-duka-backend.vercel.app/
-- Frontend: https://the.smart-duka.vercel.app/
+- Backend API: https://smart-duka-backend.vercel.app/
+- Frontend App: https://the-smart-duka.vercel.app/
 
 Required environment variables
 
@@ -12,7 +12,7 @@ Server (Vercel project for backend):
 - `JWT_SECRET` — secret used to sign JWTs.
 - `UPLOADTHING_SECRET` — secret/key from Uploadthing service (or your chosen upload provider).
 - `UPLOADTHING_APP_ID` — Uploadthing app id (if used).
-- `CLIENT_URL` — set to `https://the.smart-duka.vercel.app` so CORS allows the frontend.
+- `CLIENT_URL` — set to `https://the-smart-duka.vercel.app` so CORS allows the frontend.
 - `NODE_ENV` — `production`.
 
 Frontend (Vercel project for frontend):
@@ -58,6 +58,4 @@ Quick checklist to go live
 3. Create Vercel project for backend and set env vars (server).
 4. Create Vercel project for frontend and set `VITE_API_BASE` (or configure rewrite).
 5. Deploy backend to Vercel; confirm `https://smart-duka-backend.vercel.app/api/health` returns OK.
-6. Deploy frontend to Vercel; load `https://the.smart-duka.vercel.app/` and test features.
-
-If you want, I can create a PR that changes `client/src/services/api.ts` to use `import.meta.env.VITE_API_BASE` instead of the current `'/api'` and add `README` notes — tell me whether you prefer rewriting on Vercel or updating the client code.
+6. Deploy frontend to Vercel; load `https://the-smart-duka.vercel.app/` and test features.
